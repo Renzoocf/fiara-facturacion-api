@@ -17,7 +17,13 @@ RUN git clone https://github.com/giansalex/lycet.git /app
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     composer install --no-interaction --no-dev --optimize-autoloader
 
+# Crear carpeta de datos y dar permisos de escritura
+RUN mkdir -p /app/data /app/var && \
+    chmod -R 777 /app/data /app/var
+
 ENV APP_ENV=prod
+ENV APP_DEBUG=0
+ENV APP_SECRET=c4136a0540553455b122461ab6923e9d
 ENV CLIENT_TOKEN=123456
 ENV SOL_USER=20000000001MODDATOS
 ENV SOL_PASS=MODDATOS
